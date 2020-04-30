@@ -7,9 +7,11 @@ class Visualizer(): # do i need the abstract class?
 		self.dataset = dataset
 		self.visualize_path = visualize_path
 
-	def plot_fit(self, fit, n_components, reduced_chi_squared):
+	def plot_fit(self, fit, components, reduced_chi_squared):
 		plt.plot(self.dataset.frequency, self.dataset.flux, c='k', label='Data')
-		plt.plot(self.dataset.frequency, fit, c='b', ls='--', label='fit, %g components' % n_components,)
+		for i, comp in enumerate(components):
+			plt.plot(self.dataset.frequency, comp, c='g', ls='--', label='component %d' % i )
+		plt.plot(self.dataset.frequency, fit, c='b', ls='--', label='overall fit')
 		plt.legend(loc=3)
 		plt.xlabel('Frequency')
 		plt.ylabel('Flux')
@@ -27,7 +29,7 @@ class Visualizer(): # do i need the abstract class?
 		plt.savefig(self.visualize_path + 'residual.png')
 		plt.clf()
 
-	def visualize_fit(self, fit, n_components, reduced_chi_squared, during_analysis):
+	def visualize_fit(self, fit, components, reduced_chi_squared, during_analysis):
 
-		self.plot_fit(fit, n_components, reduced_chi_squared)
+		self.plot_fit(fit, components, reduced_chi_squared)
 		self.plot_residuals(fit, reduced_chi_squared)

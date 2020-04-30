@@ -22,7 +22,7 @@ class Analysis(af.Analysis):
         return spec_fit.likelihood
 
     def model_spectrum_from_instance(self, instance):
-        return sum(
+        return 1.0 - sum(
             list(
                 map(
                     lambda profile: profile.model_from_frequencies(
@@ -50,10 +50,12 @@ class Analysis(af.Analysis):
 
         # Visualization will be covered in tutorial 4.
 
-        n_components = len(instance.profiles)
+        components = [p.absorption_line_from_frequencies(self.dataset.frequency) for p in instance.profiles]
+
         model_spectrum = self.model_spectrum_from_instance(instance=instance)
         reduced_chi_squared = self.get_reduced_chi_squared(model_spectrum=model_spectrum)
 
-        self.visualizer.visualize_fit(fit=model_spectrum, n_components=n_components, 
+        self.visualizer.visualize_fit(fit=model_spectrum,
+                                      components=components,
                                       reduced_chi_squared=reduced_chi_squared, 
                                       during_analysis=during_analysis)

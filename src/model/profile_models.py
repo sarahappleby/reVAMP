@@ -23,9 +23,12 @@ class Gaussian(Profile):
         self.sigma = sigma
 
     def model_from_frequencies(self, frequencies):
-        return 1.0 - self.intensity * np.exp(
+        return self.intensity * np.exp(
             -0.5 * ((frequencies - self.center) / self.sigma) ** 2
         )
+
+    def absorption_line_from_frequencies(self, frequencies):
+        return 1.0 - self.model_from_frequencies(frequencies)
 
 
 class Voigt(Profile):
@@ -45,4 +48,7 @@ class Voigt(Profile):
             fwhm_L=self.fwhm_l,
             fwhm_G=self.fwhm_g,
         )
-        return 1. - v(frequencies)
+        return v(frequencies)
+
+    def absorption_line_from_frequencies(self, frequencies):
+        return 1.0 - self.model_from_frequencies(frequencies)
