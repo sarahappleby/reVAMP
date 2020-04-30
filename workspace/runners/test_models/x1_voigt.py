@@ -7,7 +7,7 @@ sys.path.append('/home/sarah/reVAMP/')
 from src.model import profile_models
 from src.dataset.spectrum import Spectrum
 import src.phase.phase as ph
-from workspace.make_data import FakeGauss
+from workspace.make_data import FakeVoigt
 
 # Setup the path to the vamp_workspace, using a relative directory name.
 workspace_path = "{}/../../".format(os.path.dirname(os.path.realpath(__file__)))
@@ -20,7 +20,7 @@ af.conf.instance = af.conf.Config(
     config_path=config_path, output_path=workspace_path + "output"
 )
 
-fakeVoigt = FakeVoigt(center=-1.0, intensity=0.5, fwhm_L=1.0, fwhm_G=2.0)
+fakeVoigt = FakeVoigt(center=-1.0, intensity=1.0, fwhm_L=1.0, fwhm_G=2.0)
 
 phase = ph.Phase(phase_name="phase_x1_voigt",
                  profiles=af.CollectionPriorModel(voigt_0=profile_models.Voigt))
