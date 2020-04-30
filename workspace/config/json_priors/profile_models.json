@@ -1,0 +1,97 @@
+{
+    "Gaussian": {
+        "center": {
+            "type": "Uniform",
+            "lower_limit": -10.0,
+            "upper_limit": 10.0,
+            "width_modifier": {
+                "type": "Absolute",
+                "value": 0.05
+            },
+            "gaussian_limits": {
+                "lower": "-inf",
+                "upper": "inf"
+            }
+        },
+        "intensity": {
+            "type": "Uniform",
+            "lower_limit": 0.0,
+            "upper_limit": 10.0,
+            "width_modifier": {
+                "type": "Relative",
+                "value": 0.5
+            },
+            "gaussian_limits": {
+                "lower": 0.0,
+                "upper": "inf"
+            }
+        },
+        "sigma": {
+            "type": "Uniform",
+            "lower_limit": 0.0,
+            "upper_limit": 20.0,
+            "width_modifier": {
+                "type": "Relative",
+                "value": 0.5
+            },
+            "gaussian_limits": {
+                "lower": 0.0,
+                "upper": "inf"
+            }
+        }
+    },
+    "Voigt": {
+        "center": {
+            "type": "Uniform",
+            "lower_limit": -10.0,
+            "upper_limit": 10.0,
+            "width_modifier": {
+                "type": "Absolute",
+                "value": 0.05
+            },
+            "gaussian_limits": {
+                "lower": "-inf",
+                "upper": "inf"
+            }
+        },
+        "intensity": {
+            "type": "Uniform",
+            "lower_limit": 0.0,
+            "upper_limit": 10.0,
+            "width_modifier": {
+                "type": "Relative",
+                "value": 0.5
+            },
+            "gaussian_limits": {
+                "lower": 0.0,
+                "upper": "inf"
+            }
+        },
+        "fwhm_l": {
+            "type": "Uniform",
+            "lower_limit": 0.0,
+            "upper_limit": 10.0,
+            "width_modifier": {
+                "type": "Relative",
+                "value": 0.5
+            },
+            "gaussian_limits": {
+                "lower": 0.0,
+                "upper": "inf"
+            }
+        },
+        "fwhm_g": {
+            "type": "Uniform",
+            "lower_limit": 0.0,
+            "upper_limit": 10.0,
+            "width_modifier": {
+                "type": "Relative",
+                "value": 0.5
+            },
+            "gaussian_limits": {
+                "lower": 0.0,
+                "upper": "inf"
+            }
+        }
+    }
+}
