@@ -20,7 +20,7 @@ af.conf.instance = af.conf.Config(
     config_path=config_path, output_path=workspace_path + "output"
 )
 
-fakeVoigt = FakeVoigt(center=-1.0, intensity=1.0, fwhm_L=1.0, fwhm_G=2.0)
+fakeVoigt = FakeVoigt(center=-1.0, intensity=1.0, fwhm_l=1.0, fwhm_g=2.0)
 
 phase = ph.Phase(phase_name="phase_x1_voigt",
                  profiles=af.CollectionPriorModel(voigt_0=profile_models.Voigt))
@@ -43,7 +43,7 @@ print()
 print("Most Probable Model:\n")
 print("Centre = ", [i.center for i in mp_instance.profiles])
 print("Intensity = ", [i.intensity for i in mp_instance.profiles])
-print("FHWM Gaussian = ", [i.fwhm_G for i in mp_instance.profiles])
-print("FHWM Lorentzian = ", [i.fwhm_L for i in mp_instance.profiles])
+print("FHWM Gaussian = ", [i.fwhm_g for i in mp_instance.profiles])
+print("FHWM Lorentzian = ", [i.fwhm_l for i in mp_instance.profiles])
 
 

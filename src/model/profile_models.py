@@ -42,7 +42,7 @@ class Voigt(Profile):
         v = Voigt1D(
             x_0=self.center,
             amplitude_L=self.intensity,
-            fwhm_l=self.fwhm_l,
-            fwhm_g=self.fwhm_g,
+            fwhm_L=self.fwhm_l,
+            fwhm_G=self.fwhm_g,
         )
         return 1. - v(frequencies)

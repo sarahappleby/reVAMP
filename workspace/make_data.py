@@ -31,17 +31,17 @@ class FakeGauss(FakeData):
         self.noisy_gauss = self.gauss + self.noise
 
 class FakeVoigt(FakeData):
-    def __init__(self, center=0.0, intensity=1.0, fwhm_L=1.0, fwhm_G=1.0, x_min=-5.0, x_max=5.0, n_points = 100, snr=30):
+    def __init__(self, center=0.0, intensity=1.0, fwhm_l=1.0, fwhm_g=1.0, x_min=-5.0, x_max=5.0, n_points = 100, snr=30):
 
         super(FakeVoigt, self).__init__(center=center, intensity=intensity, x_min=x_min, x_max=x_max, n_points=n_points, snr=snr)
-        self.fwhm_L = fwhm_L
-        self.fwhm_G = fwhm_G
+        self.fwhm_l = fwhm_l
+        self.fwhm_g = fwhm_g
 
         v = Voigt1D(
             x_0=self.center,
             amplitude_L=self.intensity,
-            fwhm_L=self.fwhm_L,
-            fwhm_G=self.fwhm_G,
+            fwhm_L=self.fwhm_l,
+            fwhm_G=self.fwhm_g,
         )
 
         self.voigt = v(self.x)
