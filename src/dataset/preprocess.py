@@ -1,7 +1,7 @@
 import numpy as np
 
-from vamp_src.dataset.spectrum import Spectrum
-import vamp_src.model.profile_models
+from src.dataset.spectrum import Spectrum
+import src.model.profile_models
 
 class Gaussian():
 	def __init__(self, xarray, center=0.0, intensity=0.1, sigma=0.01):

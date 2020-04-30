@@ -1,4 +1,4 @@
-from vamp_src.dataset.spectrum import Spectrum
+from src.dataset.spectrum import Spectrum
 
 class Region():
 

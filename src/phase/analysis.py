@@ -1,7 +1,7 @@
 import autofit as af
-from vamp_src.dataset.spectrum import Spectrum
-from vamp_src.fit.fit import DatasetFit
-from vamp_src.phase import visualizer 
+from src.dataset.spectrum import Spectrum
+from src.fit.fit import DatasetFit
+from src.phase import visualizer 
 import numpy as np
 
 

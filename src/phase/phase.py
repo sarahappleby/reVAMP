@@ -1,8 +1,8 @@
 import autofit as af
-from vamp_src.dataset.spectrum import Spectrum
-from vamp_src.phase.analysis import Analysis
-from vamp_src.phase.result import Result
-from vamp_src.model import profile_models
+from src.dataset.spectrum import Spectrum
+from src.phase.analysis import Analysis
+from src.phase.result import Result
+from src.model import profile_models
 import numpy as np
 
 class Phase(af.AbstractPhase):

@@ -3,10 +3,11 @@ import os
 import matplotlib.pyplot as plt
 
 import sys
-sys.path.append('/home/sarah/VAMP/vamp_2.0')
-from vamp_src.model import profile_models
-from vamp_src.dataset.spectrum import Spectrum
-import vamp_src.phase.phase as ph
+sys.path.append('/home/sarah/reVAMP/')
+from src.model import profile_models
+from src.dataset.spectrum import Spectrum
+import src.phase.phase as ph
+from workspace.make_data import FakeGauss
 
 # Setup the path to the vamp_workspace, using a relative directory name.
 workspace_path = "{}/../../".format(os.path.dirname(os.path.realpath(__file__)))
@@ -18,8 +19,6 @@ config_path = workspace_path + "config"
 af.conf.instance = af.conf.Config(
     config_path=config_path, output_path=workspace_path + "output"
 )
-
-from vamp_workspace.make_data import FakeVoigt
 
 fakeVoigt = FakeVoigt(center=-1.0, intensity=0.5, fwhm_L=1.0, fwhm_G=2.0)
 

@@ -3,23 +3,25 @@ import os
 import matplotlib.pyplot as plt
 
 import sys
-sys.path.append('/home/sarah/VAMP/vamp_2.0')
-from vamp_src.model import profile_models
-from vamp_src.dataset.spectrum import *
-from vamp_src.dataset.preprocess import *
-import vamp_src.phase.phase as ph
+sys.path.append('/home/sarah/reVAMP/')
+from src.model import profile_models
+from src.dataset.spectrum import *
+from src.dataset.preprocess import *
+import src.phase.phase as ph
 
 workspace_path = "{}/../../".format(os.path.dirname(os.path.realpath(__file__)))
 config_path = workspace_path + "config"
 af.conf.instance = af.conf.Config(
-    config_path=config_path, output_path=workspace_path + "output_params"
+    config_path=config_path, output_path=workspace_path + "output_multinest"
 )
 
-ncomp_true = '2'
+ncomp_true = '1'
 param_setting = 'default'
 combos = ['a', 'b', 'c', 'd', 'e']
 ncomps = [1, 2, 3]
-spectrum_dir = '/home/sarah/VAMP/vamp_2.0/vamp_workspace/runners/multinest_params/data/'
+spectrum_dir = '/home/sarah/reVAMP/workspace/runners/multinest_params/data/'
+non_linear_class=af.MultiNest
+#non_linear_class=af.Emcee
 
 chi_squared = np.zeros(len(combos)*len(ncomps))
 max_log_l = np.zeros(len(combos)*len(ncomps))
@@ -36,10 +38,9 @@ for combo in combos:
         print('\nNo components: '+str(ncomp)+'\n')
 
         full_dataset = read_from_h5py(filename)
-
-        # Lets actually narrow this down by only fitting the absorption region
         split = SplitRegions(full_dataset)
         dataset = split.new_region_spectra()[0]
+        #dataset = read_from_h5py(filename)
 
         phase_name="combo_"+combo+"_true_"+ncomp_true+"_phase_"+str(ncomp)+"_"+param_setting
         sigma_max = 0.5 * (np.max(dataset.frequency) - np.min(dataset.frequency))
@@ -60,17 +61,18 @@ for combo in combos:
             profiles.dict[component].sigma = af.UniformPrior(lower_limit=0, upper_limit=sigma_max)
             profiles.dict[component].center = af.UniformPrior(lower_limit=np.min(dataset.frequency), upper_limit=np.max(dataset.frequency)) # might need to adjust this as real frequencies scale inversely
 
-        for n in range(len(profiles) -1):
-            profiles.add_assertion(profiles[n].center < profiles[n+1].center)
+        #for n in range(len(profiles) -1):
+        #    profiles.add_assertion(profiles[n].center < profiles[n+1].center)
 
-        phase = ph.Phase(phase_name=phase_name,profiles=profiles)
+        phase = ph.Phase(phase_name=phase_name,profiles=profiles, non_linear_class=non_linear_class)
 
         result = phase.run(dataset=dataset)
 
         model = result.most_likely_model_spectrum
         chi_squared[i] = result.analysis.get_reduced_chi_squared(model)
         max_log_l[i] = result.output.maximum_log_likelihood
-        evidence[i] = result.output.evidence
+        if non_linear_class == af.MultiNest:
+            evidence[i] = result.output.evidence
 
         i += 1
 

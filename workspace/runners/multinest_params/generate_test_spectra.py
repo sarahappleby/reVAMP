@@ -1,13 +1,12 @@
 import autofit as af
 import os
 import sys
-sys.path.append('/disk2/sapple/VAMP/vamp_2.0')
+sys.path.append('/home/sarah/reVAMP/')
 import matplotlib.pyplot as plt
-from vamp_src.model import profile_models
-from vamp_src.dataset.spectrum import Spectrum
-import vamp_src.phase.phase as ph
-
-from vamp_workspace.make_data import FakeGauss
+from src.model import profile_models
+from src.dataset.spectrum import Spectrum
+import src.phase.phase as ph
+from workspace.make_data import FakeGauss
 
 
 workspace_path = "{}/../".format(os.path.dirname(os.path.realpath(__file__)))
