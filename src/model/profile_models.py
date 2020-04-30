@@ -30,19 +30,19 @@ class Gaussian(Profile):
 
 class Voigt(Profile):
     
-    def __init__(self, center=0.0, intensity=0.1, fwhm_L=0.01, fwhm_G=0.01):
+    def __init__(self, center=0.0, intensity=0.1, fwhm_l=0.01, fwhm_g=0.01):
 
         super(Voigt, self).__init__(center=center, intensity=intensity)
 
-        self.fwhm_L = fwhm_L
-        self.fwhm_G = fwhm_G
+        self.fwhm_l = fwhm_l
+        self.fwhm_g = fwhm_g
 
     def model_from_frequencies(self, frequencies):
 
         v = Voigt1D(
             x_0=self.center,
             amplitude_L=self.intensity,
-            fwhm_L=self.fwhm_L,
-            fwhm_G=self.fwhm_G,
+            fwhm_l=self.fwhm_l,
+            fwhm_g=self.fwhm_g,
         )
         return 1. - v(frequencies)
