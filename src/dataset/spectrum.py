@@ -1,6 +1,4 @@
 import numpy as np
-from scipy.ndimage.filters import gaussian_filter
-from scipy.signal import argrelextrema
 import h5py
 
 class Spectrum:
