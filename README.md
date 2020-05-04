@@ -12,4 +12,4 @@ TODO:
 - Optimize this for speed.
 - Fix setup.sh script such that it works from the command line.
 - Put together notebooks with examples.
-- Output plot with the fit components.
+

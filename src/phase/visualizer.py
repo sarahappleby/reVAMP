@@ -12,7 +12,7 @@ class Visualizer(): # do i need the abstract class?
 		for i, comp in enumerate(components):
 			plt.plot(self.dataset.frequency, comp, c='g', ls='--', label='component %d' % i )
 		plt.plot(self.dataset.frequency, fit, c='b', ls='--', label='overall fit')
-		plt.legend(loc=3)
+		plt.legend()
 		plt.xlabel('Frequency')
 		plt.ylabel('Flux')
 		plt.ylim(-0.1, 1.1)
