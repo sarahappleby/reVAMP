@@ -12,4 +12,5 @@ TODO:
 - Optimize this for speed.
 - Fix setup.sh script such that it works from the command line.
 - Put together notebooks with examples.
+- Find some handling for (a) damped absorbers (b) spectra which need flux to be rescaled
 
