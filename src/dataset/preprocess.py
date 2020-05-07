@@ -1,4 +1,5 @@
-#TODO: find some handling for (a) damped absorbers (b) spectra which need flux to be rescaled
+# TODO: find some handling for (a) damped absorbers (b) spectra which need flux to be rescaled
+# Reverse the direction of the arrays so that frequency is increasing
 
 import numpy as np
 from scipy.ndimage.filters import gaussian_filter

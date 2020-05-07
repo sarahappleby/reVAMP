@@ -15,7 +15,7 @@ af.conf.instance = af.conf.Config(
     config_path=config_path, output_path=workspace_path + "output_multinest"
 )
 
-ncomp_true = '1'
+ncomp_true = '2'
 param_setting = 'default'
 combos = ['a', 'b', 'c', 'd', 'e']
 ncomps = [1, 2, 3]
@@ -37,10 +37,10 @@ for combo in combos:
 
         print('\nNo components: '+str(ncomp)+'\n')
 
-        full_dataset = read_from_h5py(filename)
-        split = SplitRegions(full_dataset)
-        dataset = split.new_region_spectra()[0]
-        #dataset = read_from_h5py(filename)
+        #full_dataset = read_from_h5py(filename)
+        #split = SplitRegions(full_dataset), merge=True
+        #dataset = split.new_region_spectra()[0]
+        dataset = read_from_h5py(filename)
 
         phase_name="combo_"+combo+"_true_"+ncomp_true+"_phase_"+str(ncomp)+"_"+param_setting
         sigma_max = 0.5 * (np.max(dataset.frequency) - np.min(dataset.frequency))
@@ -61,8 +61,8 @@ for combo in combos:
             profiles.dict[component].sigma = af.UniformPrior(lower_limit=0, upper_limit=sigma_max)
             profiles.dict[component].center = af.UniformPrior(lower_limit=np.min(dataset.frequency), upper_limit=np.max(dataset.frequency)) # might need to adjust this as real frequencies scale inversely
 
-        #for n in range(len(profiles) -1):
-        #    profiles.add_assertion(profiles[n].center < profiles[n+1].center)
+        for n in range(len(profiles) -1):
+            profiles.add_assertion(profiles[n].center < profiles[n+1].center)
 
         phase = ph.Phase(phase_name=phase_name,profiles=profiles, non_linear_class=non_linear_class)
 

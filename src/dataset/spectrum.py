@@ -1,5 +1,7 @@
 import numpy as np
 import h5py
+from scipy.ndimage.filters import gaussian_filter
+from scipy.signal import argrelextrema
 
 class Spectrum:
     def __init__(self, frequency, wavelength, flux, noise):
@@ -34,6 +36,16 @@ class Spectrum:
         plt.ylim(-0.1, 1.1)
         plt.savefig(filename)
         plt.clf()
+
+
+    def estimate_ncomp(self):
+        """
+        Estimate the initial number of gaussians to fit to region by smoothing with a gaussian filter
+        """
+        self.ncomp = int(argrelextrema(gaussian_filter(self.flux, 3), np.less)[0].shape[0])
+        if self.ncomp <= 4:
+            self.ncomp = 1
+            return self.ncomp
 
 
 def read_from_h5py(filename):

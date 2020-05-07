@@ -1,6 +1,7 @@
 import autofit as af
 from src.dataset.spectrum import Spectrum
 from src.phase.phase import Phase
+from src.model import profile_models 
 import numpy as np
 
 class MakePhase():
