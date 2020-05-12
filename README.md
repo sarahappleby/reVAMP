@@ -10,7 +10,9 @@ and continues where 'vamp_2.0' left off.
 ## Setup
 
 To use reVAMP, you will need autofit and autoarray:
+
 https://pypi.org/project/autofit/
+
 https://pypi.org/project/autoarray/
 
 It is recommended that you set up a conda environment for using autofit. Once you have a conda enviornment for autofit, see workspace/setup_autofit.sh
