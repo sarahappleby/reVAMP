@@ -41,24 +41,26 @@ class Process():
 
 		self.times = []
 		self.reduced_chi = []
-		self.evidence = []
 		self.reduced_chi.insert(0, np.inf)
-		self.evidence.insert(0, -1. * np.inf)
+		if self.non_linear_class == af.MultiNest:
+			self.evidence = []
+			self.evidence.insert(0, -1. * np.inf)
 		self.ntries = self.ntries_total - 1
 
 		tries_remaining = self.ntries
-		print('Attempting '+str(self.ntries_total) +' for each number of components\n')
+		print('Attempting '+str(int(self.ntries_total)) +' tries for each number of components\n')
 
 		while self.reduced_chi[-1] > self.reduced_chi_threshold:
 
 			t_start = time.time()
-			phase_name = self.phase_prefix + 'phase_'+str(self.ncomp)+'_attempt_'+str(self.ntries - tries_remaining)
+			phase_name = self.phase_prefix + 'ncomp_'+str(self.ncomp)+'_attempt_'+str(int(self.ntries - tries_remaining))
 			self.get_result(phase_name)
 			self.times.append(time.time() - t_start)
 			model = self.result.most_likely_model_spectrum
 
 			self.reduced_chi.append(self.result.analysis.get_reduced_chi_squared(model))
-			self.evidence.append(self.result.output.evidence)
+			if self.non_linear_class == af.MultiNest:
+				self.evidence.append(self.result.output.evidence)
 
 			if self.reduced_chi[-1] > self.reduced_chi_threshold:
 				if tries_remaining > 0.:
@@ -68,7 +70,8 @@ class Process():
 					tries_remaining = self.ntries
 			
 		self.reduced_chi = self.reduced_chi[1:]
-		self.evidence = self.evidence[1:]
+		if self.non_linear_class == af.MultiNest:
+			self.evidence = self.evidence[1:]
 
 	def find_extra_components(self, evidence_factor=1.1):
 		"""

@@ -28,13 +28,14 @@ class Spectrum:
                 for k in list(attributes.keys()):
                     f[k] = attributes[k]
 
-    def plot_spectrum(self, filename):
+    def plot_spectrum(self, filename=None):
         import matplotlib.pyplot as plt
         plt.plot(self.wavelength, self.flux, c='k')
         plt.xlabel('Wavelength')
         plt.ylabel('Flux')
         plt.ylim(-0.1, 1.1)
-        plt.savefig(filename)
+        if filename:
+            plt.savefig(filename)
         plt.clf()
 
 
@@ -46,6 +47,7 @@ class Spectrum:
         if self.ncomp <= 4:
             self.ncomp = 1
             return self.ncomp
+
 
 
 def read_from_h5py(filename):

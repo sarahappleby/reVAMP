@@ -4,6 +4,7 @@
 import numpy as np
 from scipy.ndimage.filters import gaussian_filter
 from scipy.signal import argrelextrema
+import matplotlib.pyplot as plt
 
 from src.dataset.spectrum import Spectrum
 import src.model.profile_models
@@ -50,6 +51,7 @@ class SplitRegions():
 
 		self.compute_detection_regions()
 		self.split_difficult_region()
+		self.new_region_spectra()
 
 	def estimate_ncomp(self):
 		"""
@@ -227,23 +229,44 @@ class SplitRegions():
 					end = self.splitting_points[i+1]
 					self.region_pixels.append([start,end])
 
-		def plot_regions(self):
-			"""
-			Plot the absorption regions
-			"""
+	def plot_regions(self, filename=None):
+		"""
+		Plot the absorption regions
+		"""
 
-			def plot_bracket(x, axis, dir):
-				height = .2
-				arm_length = 0.1
-				axis.plot((x, x), (1-height/2, 1+height/2), color='magenta')
+		def plot_bracket(x, axis, dir):
+			height = .2
+			arm_length = 0.1
+			axis.plot((x, x), (1-height/2, 1+height/2), color='magenta')
 
-				if dir=='left':
-					xarm = x+arm_length
-				if dir=='right':
-					xarm = x-arm_length
+			if dir=='left':
+				xarm = x+arm_length
+			if dir=='right':
+				xarm = x-arm_length
 
-				axis.plot((x, xarm), (1-height/2, 1-height/2), color='magenta')
-				axis.plot((x, xarm), (1+height/2, 1+height/2), color='magenta')
+			axis.plot((x, xarm), (1-height/2, 1-height/2), color='magenta')
+			axis.plot((x, xarm), (1+height/2, 1+height/2), color='magenta')
 
+		N = 6
+		length = len(self.dataset.flux) / N
+		fig, ax = plt.subplots(N, figsize=(15,15))
+		for n in range(N):
+			lower_lim = int(n*length)
+			upper_lim = int(n*length+length)
 
+			ax[n].plot(self.dataset.wavelength, self.dataset.flux, c='black')
+			ax[n].set_xlim(self.dataset.wavelength[lower_lim], self.dataset.wavelength[upper_lim])
+
+			for (start, end) in self.region_pixels:
+				plot_bracket(self.dataset.wavelength[start], ax[n], 'left')
+				plot_bracket(self.dataset.wavelength[end], ax[n], 'right')
+
+			ax[n].set_xlabel('Wavelength (A)')
+			ax[n].set_ylabel('Flux')
+			
+		if filename:
+			plt.savefig(filename+'split_regions.png')
+			plt.clf()
+		else:
+			plt.show()
 
