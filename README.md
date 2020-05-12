@@ -1,13 +1,13 @@
 # reVAMP
 Voigt Automatic Multinest Profiles
 
+reVAMP fits absorption spectral features with Voigt and Gaussian profiles and finds the optimal number of profiles to fit.
+
 reVAMP is the new version of VAMP:
 https://github.com/sarahappleby/VAMP/
 and continues where 'vamp_2.0' left off.
 
-reVAMP fits absorption spectral features with Voigt and Gaussian profiles and finds the optimal number of profiles to fit.
-
-# Setup
+## Setup
 
 To use reVAMP, you will need autofit and autoarray:
 https://pypi.org/project/autofit/
@@ -15,7 +15,7 @@ https://pypi.org/project/autoarray/
 
 It is recommended that you set up a conda environment for using autofit. Once you have a conda enviornment for autofit, see workspace/setup_autofit.sh
 
-# To do:
+## To do:
 
 - Determine the Multinest parameters that will fit features correctly every time.
 - Optimize this for speed.
