@@ -17,7 +17,7 @@ https://pypi.org/project/autoarray/
 
 https://www.gnu.org/software/autoconf/
 
-It is recommended that you set up a conda environment for using autofit. Once you have a conda enviornment for autofit, see workspace/setup_autofit.sh
+It is recommended that you set up a conda environment for using autofit. Once you have a conda environment for autofit, see workspace/setup_autofit.sh to set up your paths.
 
 ## To do:
 
