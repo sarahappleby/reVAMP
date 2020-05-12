@@ -30,13 +30,13 @@ plt.plot(dataset.frequency, dataset.flux)
 plt.show()
 
 # We also have an 'output' attribute, which in this case is a MultiNestOutput object:
-print(result.output)
+print(result.samples)
 # This object acts as an interface between the MultiNest output results on your hard-disk and this Python code. For
 # example, we can use it to get the evidence estimated by MultiNest.
-print(result.output.evidence)
+print(result.samples.log_evidence)
 # We can also use it to get a model-instance of the "most probable" model, which is the model where each parameter is
 # the value estimated from the probability distribution of parameter space.
-mp_instance = result.output.most_probable_instance
+mp_instance = result.samples.most_probable_instance
 print()
 print("Most Probable Model:\n")
 print("Centre = ", mp_instance.profiles.gaussian_0.center)

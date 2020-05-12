@@ -57,8 +57,7 @@ class Phase(af.AbstractPhase):
 
 	def make_result(self, result, analysis):
 		return self.Result(
-			instance=result.instance,
-			likelihood=result.likelihood,
-			analysis=analysis,
-			output=result.output
+			samples=result.samples,
+			previous_model=result.previous_model, 
+			analysis=analysis
 		)

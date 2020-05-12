@@ -19,9 +19,9 @@ class Process():
 		self.extra_components = extra_components
 		self.verbose = verbose
 
-		self.sigma_max = 0.5 * np.abs(np.max(dataset.frequency) - np.min(dataset.frequency))
-		self.freq_min = np.min(dataset.frequency)
-		self.freq_max = np.max(dataset.frequency)
+		self.sigma_max = 0.5 * np.abs(np.max(self.dataset.frequency) - np.min(self.dataset.frequency))
+		self.freq_min = np.min(self.dataset.frequency)
+		self.freq_max = np.max(self.dataset.frequency)
 
 		self.vamp_process()
 
@@ -60,7 +60,7 @@ class Process():
 
 			self.reduced_chi.append(self.result.analysis.get_reduced_chi_squared(model))
 			if self.non_linear_class == af.MultiNest:
-				self.evidence.append(self.result.output.evidence)
+				self.evidence.append(self.result.samples.log_evidence)
 
 			if self.reduced_chi[-1] > self.reduced_chi_threshold:
 				if tries_remaining > 0.:

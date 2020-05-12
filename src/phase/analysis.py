@@ -16,7 +16,7 @@ class Analysis(af.Analysis):
 
         self.num_pixels = len(self.dataset.flux)
 
-    def fit(self, instance):
+    def log_likelihood_function(self, instance):
         model_spectrum = self.model_spectrum_from_instance(instance=instance)
         spec_fit = self.fit_from_model_spectrum(model_spectrum=model_spectrum)
         return spec_fit.likelihood

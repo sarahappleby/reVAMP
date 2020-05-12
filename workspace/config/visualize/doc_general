@@ -20,7 +20,7 @@ A description of the general.ini visualization config.
 
     visualize_interval : int
 
-        The number of new best-fit (e.g. highest likelihood) models that must be sampled for PyAutoLens to output the 
+        The number of new best-fit (e.g. highest log likelihood) models that must be sampled for PyAutoLens to output the
         best-fit as a new set of figure / subplot visualization during a non-linear fit (e.g. on-the-fly).
 
         The figures are output according to the 'plots.ini' config file.
@@ -50,7 +50,7 @@ A description of the general.ini visualization config.
         
     grid : bool
 
-        If True, image-plane grids (e.g. the centers of image pixels) and source-plane grids (e.g. traced pixels) are
+        If True, image-plane grids (e.g. the centres of image pixels) and source-plane grids (e.g. traced pixels) are
         plotted on every figure 
        
         The grid's appearance is specified by the [grid] section of the 'figures.ini' and 'subplots.ini' configs.
@@ -93,35 +93,35 @@ A description of the general.ini visualization config.
         The multiple_images appearance is specified by the [multiple_images] section of the 'figures.ini' and
         'subplots.ini' configs.
         
-    gaussian_centers : bool
+    light_profile_centres : bool
 
-        If True, the center of all light profiles are plotted on figures which have have light profile(s) available,
+        If True, the centre of all light profiles are plotted on figures which have have light profile(s) available, 
         such as the images of galaxies, planes, tracers and fits.
         
-        The gaussian_centers appearance is specified by the [gaussian_centers] section of the
+        The light_profile_centres appearance is specified by the [light_profile_centres] section of the 
         'figures.ini' and 'subplots.ini' configs.
 
-        If there are multiple galaxies with light profiles in a plane or tracer, light profile centers of the same
+        If there are multiple galaxies with light profiles in a plane or tracer, light profile centres of the same
         galaxy are colored the same according to the 'colors' specified in the configs above. By default, this color
-        wheel matches the mass profile centers so that light and mass profile centers of the same galaxies are colored
+        wheel matches the mass profile centres so that light and mass profile centres of the same galaxies are colored
         the same.
         
-    mass_profile_centers : bool
+    mass_profile_centres : bool
 
-        If True, the center of all mass profiles are plotted on figures which have have mass profile(s) available,
+        If True, the centre of all mass profiles are plotted on figures which have have mass profile(s) available, 
         such as the images of galaxies, planes, tracers and fits.
         
-        The mass_profile_centers appearance is specified by the [mass_profile_centers] section of the
+        The mass_profile_centres appearance is specified by the [mass_profile_centres] section of the 
         'figures.ini' and 'subplots.ini' configs.
 
-        If there are multiple galaxies with mass profiles in a plane or tracer, mass profile centers of the same
+        If there are multiple galaxies with mass profiles in a plane or tracer, mass profile centres of the same
         galaxy are colored the same according to the 'colors' specified in the configs above. By default, this color
-        wheel matches the light profile centers so that light and mass profile centers of the same galaxies are colored
+        wheel matches the light profile centres so that light and mass profile centres of the same galaxies are colored
         the same.
         
     inversion_pixelization_grid : bool
 
-        If True, the inversion's pixelization grid (e.g. the center of every pixel of the pixelization) is plotted
+        If True, the inversion's pixelization grid (e.g. the centre of every pixel of the pixelization) is plotted
         on figures of the inversion's reconstructed source.
        
         The inversion_pixelization_grid appearance is specified by the [inversion_pixelization_grid] section of 
@@ -146,7 +146,7 @@ A description of the general.ini visualization config.
         
     inversion_image_pixelization_grid : bool
 
-        If True, inversion's pixelizaion grid in the image-plane (e.g. the pixels which are traced to form the center
+        If True, inversion's pixelizaion grid in the image-plane (e.g. the pixels which are traced to form the centre
         of every pixel of the pixelization) is plotted on fit_imaging figures of the image.
        
         The inversion_pixelization_grid appearance is specified by the [inversion_pixelization_grid] section of 
