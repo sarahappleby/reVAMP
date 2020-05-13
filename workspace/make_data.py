@@ -15,7 +15,8 @@ class FakeData():
         self.x = np.arange(self.x_min, self.x_max, self.dx)
 
         # generate noise
-        self.noise = np.random.normal(0.0, 1.0 / self.snr, self.n_points)
+        self.noise = np.array([1./self.snr] * self.n_points)
+        self.sigma_flux = np.random.normal(0.0, 1.0 / self.snr, self.n_points)
 
 class FakeGauss(FakeData):
     def __init__(self, center=0.0, intensity=1.0, sigma=1.0, x_min=-5.0, x_max=5.0, n_points=100, snr=30,):
@@ -28,7 +29,7 @@ class FakeGauss(FakeData):
             -0.5 * ((self.x - self.center) / self.sigma) ** 2
         )
 
-        self.noisy_gauss = self.gauss + self.noise
+        self.noisy_gauss = self.gauss + self.sigma_flux
 
 class FakeVoigt(FakeData):
     def __init__(self, center=0.0, intensity=1.0, fwhm_l=1.0, fwhm_g=1.0, x_min=-5.0, x_max=5.0, n_points = 100, snr=30):
@@ -45,4 +46,4 @@ class FakeVoigt(FakeData):
         )
 
         self.voigt = v(self.x)
-        self.noisy_voigt = self.voigt + self.noise
+        self.noisy_voigt = self.voigt + self.sigma_flux
