@@ -70,6 +70,7 @@ class MakePhase():
 		for component in self.profiles.dict:
 			self.profiles.dict[component].sigma = af.UniformPrior(lower_limit=0, upper_limit=self.sigma_max)
 			self.profiles.dict[component].center = af.UniformPrior(lower_limit=self.freq_min, upper_limit=self.freq_max)
+			#self.profiles.dict[component].intensity = af.LogUniformPrior(lower_limit=1e-4, upper_limit=1e20)
 
 	def assert_centers(self):
 
@@ -77,7 +78,6 @@ class MakePhase():
 			self.profiles.add_assertion(self.profiles[n].center < self.profiles[n+1].center)
 
 	def make_phase(self):
-
 		if self.mode == 'Gaussian':
 			self.make_gaussian_profiles()
 		elif self.mode == 'Voigt':

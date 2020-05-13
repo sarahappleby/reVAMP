@@ -28,7 +28,7 @@ class Gaussian(Profile):
         )
 
     def absorption_line_from_frequencies(self, frequencies):
-        return 1.0 - self.model_from_frequencies(frequencies)
+        return np.exp(-1. * self.model_from_frequencies(frequencies))
 
 
 class Voigt(Profile):
@@ -51,4 +51,4 @@ class Voigt(Profile):
         return v(frequencies)
 
     def absorption_line_from_frequencies(self, frequencies):
-        return 1.0 - self.model_from_frequencies(frequencies)
+        return np.exp(-1.* self.model_from_frequencies(frequencies))

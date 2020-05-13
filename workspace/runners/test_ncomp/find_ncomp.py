@@ -17,7 +17,7 @@ af.conf.instance = af.conf.Config(
 
 reduced_chi_threshold = 2.
 ntries = 2
-ncomp_true = '3'
+ncomp_true = '1'
 param_setting = ''
 combos = ['a', 'b', 'c', 'd', 'e']
 

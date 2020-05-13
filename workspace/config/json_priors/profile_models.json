@@ -14,9 +14,9 @@
             }
         },
         "intensity": {
-            "type": "Uniform",
-            "lower_limit": 0.0,
-            "upper_limit": 1.0,
+            "type": "LogUniform",
+            "lower_limit": 1e-6,
+            "upper_limit": 1e20,
             "width_modifier": {
                 "type": "Relative",
                 "value": 0.5

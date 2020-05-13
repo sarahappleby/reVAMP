@@ -22,16 +22,18 @@ class Analysis(af.Analysis):
         return spec_fit.likelihood
 
     def model_spectrum_from_instance(self, instance):
-        return 1.0 - sum(
-            list(
-                map(
-                    lambda profile: profile.model_from_frequencies(
-                        self.dataset.frequency
-                    ),
-                    instance.profiles,
+        return np.exp(
+            -1. * sum(
+                    list(
+                        map(
+                            lambda profile: profile.model_from_frequencies(
+                                self.dataset.frequency
+                            ),
+                            instance.profiles,
+                        )
+                    )
                 )
             )
-        )
 
     def fit_from_model_spectrum(self, model_spectrum):
         return DatasetFit(
